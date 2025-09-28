@@ -35,6 +35,7 @@ app.use(limiter);
 const allowedOrigins = [
  'http://localhost:5173',
  'http://localhost:3000',
+ 'https://alx-project-nexus-job-board.vercel.app', // Your actual Vercel frontend URL
  'https://your-frontend-app.onrender.com', // Render frontend URL
  'https://your-frontend-app.vercel.app', // Vercel frontend URL
  process.env.CORS_ORIGIN
