@@ -362,3 +362,62 @@ For deployment issues:
 2. Verify environment configuration
 3. Test database connectivity
 4. Check cloud platform status pages
+
+## 🌐 Domain and SSL Configuration
+
+### Custom Domain Setup
+
+1. **Purchase a domain** from providers like Namecheap, GoDaddy, or Cloudflare
+2. **Configure DNS records:**
+   - A record pointing to your server IP (VPS deployment)
+   - CNAME record pointing to your platform URL (cloud platforms)
+3. **Update CORS_ORIGIN** in backend environment variables
+4. **Configure SSL certificates** (Let's Encrypt, Cloudflare SSL, or platform-provided)
+
+### SSL Certificate Setup
+
+```bash
+# Using Let's Encrypt with Certbot
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com
+```
+
+## 📈 Performance Optimization
+
+### Backend Optimization
+
+- Enable gzip compression
+- Implement caching strategies
+- Use CDN for static assets
+- Optimize database queries
+- Implement rate limiting
+
+### Frontend Optimization
+
+- Enable code splitting
+- Implement lazy loading
+- Optimize images
+- Use service workers for caching
+- Minimize bundle size
+
+## 🔄 Backup and Recovery
+
+### Database Backups
+
+```bash
+# MongoDB backup
+mongodump --uri="mongodb+srv://username:password@cluster.mongodb.net/jobboard" --out backup/
+
+# Restore
+mongorestore --uri="mongodb+srv://username:password@cluster.mongodb.net/jobboard" backup/jobboard/
+```
+
+### File Upload Backups
+
+- Use cloud storage with versioning
+- Implement automated backup schedules
+- Test restore procedures regularly
+
+---
+
+**Built with ❤️ for ALX Software Engineering Program**
