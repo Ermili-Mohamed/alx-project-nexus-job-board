@@ -2,6 +2,7 @@ import { MapPin, Briefcase, Clock, DollarSign, Building } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { formatShortDate } from "@/lib/utils"
 import type { Job } from '../services/api';
 
 interface JobCardProps {
@@ -37,7 +38,7 @@ export function JobCard({ job, onApplyClick }: JobCardProps) {
       <Badge variant="secondary" className="text-xs lg:text-sm">
        {job.category}
       </Badge>
-      <p className="text-xs lg:text-sm text-muted-foreground whitespace-nowrap">{job.postedDate}</p>
+      <p className="text-xs lg:text-sm text-muted-foreground whitespace-nowrap">{formatShortDate(job.postedDate)}</p>
      </div>
     </div>
    </CardHeader>
