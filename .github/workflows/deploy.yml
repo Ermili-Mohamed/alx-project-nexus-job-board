@@ -21,7 +21,6 @@ jobs:
           cache-dependency-path: |
             job-board-backend/package-lock.json
             job-board-platform/package-lock.json
-            jobAlx/package-lock.json
 
       - name: Install Backend Dependencies
         run: |
@@ -33,20 +32,13 @@ jobs:
           cd job-board-platform
           npm ci
 
-      - name: Install Next.js Dependencies
-        run: |
-          cd jobAlx
-          npm ci
-
       - name: Build Frontend
         run: |
           cd job-board-platform
           npm run build
 
-      - name: Build Next.js
-        run: |
-          cd jobAlx
-          npm run build
+      # Note: Only building React/Vite frontend
+      # Next.js project (jobAlx) is not included in this build
 
   # Note: Render auto-deploys from GitHub, so no manual deployment steps needed
   # Just ensure your Render service is connected to this repository
