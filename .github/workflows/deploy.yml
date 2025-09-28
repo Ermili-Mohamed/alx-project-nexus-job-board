@@ -1,0 +1,52 @@
+name: Deploy Job Board Application
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: |
+            job-board-backend/package-lock.json
+            job-board-platform/package-lock.json
+            jobAlx/package-lock.json
+
+      - name: Install Backend Dependencies
+        run: |
+          cd job-board-backend
+          npm ci
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd job-board-platform
+          npm ci
+
+      - name: Install Next.js Dependencies
+        run: |
+          cd jobAlx
+          npm ci
+
+      - name: Build Frontend
+        run: |
+          cd job-board-platform
+          npm run build
+
+      - name: Build Next.js
+        run: |
+          cd jobAlx
+          npm run build
+
+  # Note: Render auto-deploys from GitHub, so no manual deployment steps needed
+  # Just ensure your Render service is connected to this repository
